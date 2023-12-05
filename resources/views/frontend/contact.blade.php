@@ -12,15 +12,31 @@
     <!-- Section-->
     <section class="py-5">
       <div class="container px-4 px-lg-5 mt-5">
-        <div class="row justify-content-center">
+      @if(session()->has('message'))  
+        <div class="alert alert-{{ session()->get('alert-type') }} alert-dismissible fade show" role="alert">
+              {{ session()->get('message') }}
+          </div>
+      @endif
+      @if ($errors->any())
+        <div class="alert alert-danger">
+            <ul>
+                @foreach ($errors->all() as $error)
+                    <li>{{ $error }}</li>
+                @endforeach
+            </ul>
+        </div>
+      @endif
+          <div class="row justify-content-center">
           <div class="col-lg-10 m-auto">
             <div class="contact-form">
-              <form action="index.html">
+              <form action="{{ route('contact.store') }}" method="post">
+                @csrf
                 <div class="row">
                   <div class="col-lg-6 col-md-6 mb-2">
                     <div class="name-input form-group">
                       <input
                         type="text"
+                        name="nama"
                         class="form-control"
                         placeholder="Isikan nama lengkap"
                       />
@@ -30,6 +46,7 @@
                     <div class="email-input form-group">
                       <input
                         type="email"
+                        name="email"
                         class="form-control"
                         placeholder="Isikan alamat email"
                       />
@@ -41,6 +58,7 @@
                     <div class="subject-input form-group">
                       <input
                         type="text"
+                        name="subject"
                         class="form-control"
                         placeholder="Isikan subject email"
                       />
@@ -49,7 +67,7 @@
                 </div>
                 <div class="message-input form-group mb-3">
                   <textarea
-                    name="review"
+                    name="pesan"
                     cols="30"
                     rows="10"
                     placeholder="Isikan pesan anda"
