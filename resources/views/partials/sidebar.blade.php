@@ -13,6 +13,12 @@
 
             <!-- Nav Item - Dashboard -->
             <li class="nav-item active">
+                    <a class="nav-link" href="{{ route('homepage') }}">
+                    <i class="fas fa-fw fa-tachometer-alt"></i>
+                    <span>Home</span></a>
+            </li>
+
+             <li class="nav-item active">
                     <a class="nav-link" href="{{ route('admin.dashboard.index') }}">
                     <i class="fas fa-fw fa-tachometer-alt"></i>
                     <span>Dashboard</span></a>
